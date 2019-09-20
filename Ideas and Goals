@@ -1,1 +1,32 @@
+App Project Ideas
+* Header for swapping between pages
+    * Runtime efficiency
+        * Make sure only necessary pages are running
+	
+* Potental Map APIs
+* 	Google Maps
+* 	Open Street Map
 
+* Loading Screen
+* Main Menu
+    * City Menu
+    * Cities
+        * List of crimes
+        * Page that describes each crime
+
+    * Map
+        * Each crime is marked with a bitmap marker indicating the type of crime
+                * gun for shooting
+                * $ for robbery
+                * etc
+        * have to decide how far back to display crimes
+            * crimes within past month
+            * crimes within past 5 years
+        * use csv file to show crime for each city
+            * potentially use Python to read csv data
+        * Use dictionary to pair crime codes and bitmap icons
+            * check a crime code from the csv with the dictionary, and use corresponding icon for the map
+    * Settings
+        * Night mode
+        * Font size
+        * Option to save a certain city so that the map opens by itself the next time you open the app

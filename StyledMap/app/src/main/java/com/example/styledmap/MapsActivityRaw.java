@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -50,8 +51,8 @@ public class MapsActivityRaw extends AppCompatActivity
         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.gunmarker);
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(44.45, -73.16))
-                .title("Hello world"));
-                .icon(icon);
+                .title("Hello world")
+                .icon(icon));
                // .icon(BitmapDescriptorFactory.fromPath(String.C:\Users\AllBen\Desktop\android-samples-master2\android-samples-master\tutorials\StyledMap\app\src\main\res\drawable\gunmarker.bmp));
 
                 //.icon(BitmapDescriptorFactory.fromResource(R.drawable.gunmarker,"gunmarker"));

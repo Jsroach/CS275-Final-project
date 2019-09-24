@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.graphics.Bitmap;
-
+import android.graphics.drawable.Icon;
 import java.io.File;
 
 /**
@@ -45,14 +45,16 @@ public class MapsActivityRaw extends AppCompatActivity
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        File directory = context.getFilesDir();
-        File file = new File(directory,gunMarker.bmp);
+        //File directory = context.getFilesDir();
+        //File file = new File(directory,gunmarker.bmp);
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.gunmarker);
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(44.45, -73.16))
                 .title("Hello world"));
-                .icon(BitmapDescriptorFactory.fromPath(String.C:\Users\AllBen\Desktop\android-samples-master2\android-samples-master\tutorials\StyledMap\app\src\main\res\drawable\gunMarker.bmp));
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.gunMarker));
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.gunMarker,"gunMarker"));
+                .icon(icon);
+               // .icon(BitmapDescriptorFactory.fromPath(String.C:\Users\AllBen\Desktop\android-samples-master2\android-samples-master\tutorials\StyledMap\app\src\main\res\drawable\gunmarker.bmp));
+
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.gunmarker,"gunmarker"));
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.

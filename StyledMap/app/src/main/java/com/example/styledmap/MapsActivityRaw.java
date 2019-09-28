@@ -48,14 +48,54 @@ public class MapsActivityRaw extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         //File directory = context.getFilesDir();
         //File file = new File(directory,gunmarker.bmp);
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.gunmarker);
+        BitmapDescriptor armedRob = BitmapDescriptorFactory.fromResource(R.drawable.armedrob);
+        BitmapDescriptor assault = BitmapDescriptorFactory.fromResource(R.drawable.assault);
+        BitmapDescriptor assaultTwo = BitmapDescriptorFactory.fromResource(R.drawable.assaulttwo);
+        BitmapDescriptor burglary = BitmapDescriptorFactory.fromResource(R.drawable.burglary);
+        BitmapDescriptor carburglary = BitmapDescriptorFactory.fromResource(R.drawable.carburglary);
+        BitmapDescriptor homicide = BitmapDescriptorFactory.fromResource(R.drawable.homicide);
+        BitmapDescriptor kidnap = BitmapDescriptorFactory.fromResource(R.drawable.kidnap);
+        BitmapDescriptor rape = BitmapDescriptorFactory.fromResource(R.drawable.rape);
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(44.45, -73.16))
-                .title("Hello world")
-                .icon(icon));
-               // .icon(BitmapDescriptorFactory.fromPath(String.C:\Users\AllBen\Desktop\android-samples-master2\android-samples-master\tutorials\StyledMap\app\src\main\res\drawable\gunmarker.bmp));
-
-                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.gunmarker,"gunmarker"));
+                .position(new LatLng(34.052235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(armedRob));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.152235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(assault));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.252235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(assaultTwo));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.352235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(burglary));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.452235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(carburglary));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.552235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(homicide));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.652235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(kidnap));
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(34.752235, -118.243683))
+                .title("Bang bang")
+                .snippet("Summary of crime")
+                .icon(rape));
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
@@ -70,6 +110,6 @@ public class MapsActivityRaw extends AppCompatActivity
             Log.e(TAG, "Can't find style. Error: ", e);
         }
         // Position the map's camera near Sydney, Australia.
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(44.46, -73.17)));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(34.752235, -118.243683)));
     }
 }

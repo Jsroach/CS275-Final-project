@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -14,7 +15,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import java.io.File;
 
@@ -28,6 +28,7 @@ public class MapsActivityRaw extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps_raw);
@@ -38,16 +39,26 @@ public class MapsActivityRaw extends AppCompatActivity
                 (SupportMapFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
+    public void getMapAsync(OnMapReadyCallback callback){
+        GoogleMapOptions options = new GoogleMapOptions();
+        options.mapType(GoogleMap.MAP_TYPE_SATELLITE)
+                .compassEnabled(true)
+                .rotateGesturesEnabled(true)
+                .tiltGesturesEnabled(true);
+
+    }
     /**
      * Manipulates the map when it's available.
      * The API invokes this callback when the map is ready for use.
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //File directory = context.getFilesDir();
-        //File file = new File(directory,gunmarker.bmp);
+        // File directory = context.getFilesDir();
+        //File file = new File(directory,gunMarker.bmp);
+        getMapAsync(this);
         BitmapDescriptor armedRob = BitmapDescriptorFactory.fromResource(R.drawable.armedrob);
         BitmapDescriptor assault = BitmapDescriptorFactory.fromResource(R.drawable.assault);
         BitmapDescriptor assaultTwo = BitmapDescriptorFactory.fromResource(R.drawable.assaulttwo);
@@ -96,7 +107,10 @@ public class MapsActivityRaw extends AppCompatActivity
                 .title("Bang bang")
                 .snippet("Summary of crime")
                 .icon(rape));
-        try {
+        //.icon(BitmapDescriptorFactory.fromPath(String.C:\Users\AllBen\Desktop\android-samples-master2\android-samples-master\tutorials\StyledMap\app\src\main\res\drawable\gunMarker.bmp));
+        //.icon(BitmapDescriptorFactory.fromResource(R.drawable.gunmarker));
+        //.icon(BitmapDescriptorFactory.fromResource(R.drawable.gunmarker,"gunmarker"));
+/*        try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
             boolean success = googleMap.setMapStyle(
@@ -108,8 +122,11 @@ public class MapsActivityRaw extends AppCompatActivity
             }
         } catch (Resources.NotFoundException e) {
             Log.e(TAG, "Can't find style. Error: ", e);
-        }
+        }*/
         // Position the map's camera near Sydney, Australia.
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(34.752235, -118.243683)));
     }
+
 }
+
+

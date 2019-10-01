@@ -42,14 +42,14 @@ public class MapsActivityRaw extends AppCompatActivity
 
     }
 
-    public void getMapAsync(OnMapReadyCallback callback){
+/*    public void getMapAsync(OnMapReadyCallback callback){
         GoogleMapOptions options = new GoogleMapOptions();
         options.mapType(GoogleMap.MAP_TYPE_SATELLITE)
                 .compassEnabled(true)
                 .rotateGesturesEnabled(true)
                 .tiltGesturesEnabled(true);
 
-    }
+    }*/
     /**
      * Manipulates the map when it's available.
      * The API invokes this callback when the map is ready for use.
@@ -58,7 +58,7 @@ public class MapsActivityRaw extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         // File directory = context.getFilesDir();
         //File file = new File(directory,gunMarker.bmp);
-        getMapAsync(this);
+        //getMapAsync(this);
         BitmapDescriptor armedRob = BitmapDescriptorFactory.fromResource(R.drawable.armedrob);
         BitmapDescriptor assault = BitmapDescriptorFactory.fromResource(R.drawable.assault);
         BitmapDescriptor assaultTwo = BitmapDescriptorFactory.fromResource(R.drawable.assaulttwo);

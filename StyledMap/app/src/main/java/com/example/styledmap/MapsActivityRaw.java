@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
@@ -101,46 +102,46 @@ public class MapsActivityRaw extends AppCompatActivity
         BitmapDescriptor rape = BitmapDescriptorFactory.fromResource(R.drawable.rape);
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(34.052235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .title("Robbery")
+                .snippet("11/10/19 Armed robbery via handgun")
                 .icon(armedRob));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.152235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.343683))
+                .title("Assault")
+                .snippet("10/10/19 Assault with a deadly weapon using a handgun")
                 .icon(assault));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.252235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.143683))
+                .title("Assault")
+                .snippet("09/09/19 Assault with a deadly weapon using a knife")
                 .icon(assaultTwo));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.352235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.343633))
+                .title("Burglary")
+                .snippet("08/07/19 Burglary of a residence")
                 .icon(burglary));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.452235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.343583))
+                .title("Burglary")
+                .snippet("07/01/19 Burglary of a vehicle")
                 .icon(carburglary));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.552235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.342683))
+                .title("Homicide")
+                .snippet("06/02/19 Criminal homicide involving a handgun")
                 .icon(homicide));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.652235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.313683))
+                .title("Kidnap")
+                .snippet("05/01/19 Kidnapping occurred with use of a hand gun")
                 .icon(kidnap));
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(34.752235, -118.243683))
-                .title("Bang bang")
-                .snippet("Summary of crime")
+                .position(new LatLng(34.052235, -118.303683))
+                .title("Rape")
+                .snippet("06/06/19 Forcible rape using a weapon")
                 .icon(rape));
 
-        try {
+/*        try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
             boolean success = googleMap.setMapStyle(
@@ -152,7 +153,7 @@ public class MapsActivityRaw extends AppCompatActivity
             }
         } catch (Resources.NotFoundException e) {
             Log.e(TAG, "Can't find style. Error: ", e);
-        }
+        }*/
         // Position the map's camera near Sydney, Australia.
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(34.752235, -118.243683)));
     }

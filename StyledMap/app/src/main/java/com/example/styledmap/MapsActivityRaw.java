@@ -31,7 +31,7 @@ import android.widget.Toast;
 /**
  * A styled map using JSON styles from a raw resource.
  */
-public class MapsActivityRaw extends AppCompatActivity
+public class MapsActivityRaw extends MainMenuActivity
         implements OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
         OnMapReadyCallback,

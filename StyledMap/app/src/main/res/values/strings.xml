@@ -1,11 +1,18 @@
 <resources>
-    <string name="app_name">Styled Map</string>
-    <string name="title_activity_maps">Styled Map</string>
+    <string name="app_name">Body Guard</string>
+    <string name="title_activity_maps">Body Guard</string>
     <string name="location_permission_denied"> Location Permission Denied</string>
     <string name="permission_required_toast"> Permission required</string>
     <string name="permission_rationale_location"> Permission rationale location</string>
 
-    <string name="title_activity_main_menu">mainMenuActivity</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main_menu_two">MainMenuTwoActivity</string>
+    <string name="options">Options</string>
+    <string name="map">Map</string>
+    <string name="crime_list">Crime List</string>
+    <string name="settings">Settings</string>
+
+
 </resources>

@@ -6,10 +6,8 @@
     <string name="permission_rationale_location"> Permission rationale location</string>
 
     <string name="title_activity_main_menu">MainMenuActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_main_menu_two">MainMenuTwoActivity</string>
-    <string name="options">Options</string>
+    <string name="options">Cities</string>
     <string name="map">Map</string>
     <string name="crime_list">Crime List</string>
     <string name="settings">Settings</string>

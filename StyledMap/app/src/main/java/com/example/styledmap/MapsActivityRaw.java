@@ -85,7 +85,7 @@ public class MapsActivityRaw extends MainMenuActivity
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-        mMap.setMyLocationEnabled(false);
+        mMap.setMyLocationEnabled(true);
         // File directory = context.getFilesDir();
         //File file = new File(directory,gunMarker.bmp);
         //getMapAsync(this);

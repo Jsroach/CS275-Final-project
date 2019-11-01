@@ -2,9 +2,8 @@ package com.example.styledmap;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -23,8 +22,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -34,8 +32,7 @@ import android.widget.Toast;
 public class MapsActivityRaw extends MainMenuActivity
         implements OnMyLocationButtonClickListener,
         OnMyLocationClickListener,
-        OnMapReadyCallback,
-        ActivityCompat.OnRequestPermissionsResultCallback {
+        OnMapReadyCallback{
 
     private static final String TAG = MapsActivityRaw.class.getSimpleName();
 
@@ -88,7 +85,7 @@ public class MapsActivityRaw extends MainMenuActivity
 
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-        enableMyLocation();
+        mMap.setMyLocationEnabled(false);
         // File directory = context.getFilesDir();
         //File file = new File(directory,gunMarker.bmp);
         //getMapAsync(this);
@@ -160,7 +157,9 @@ public class MapsActivityRaw extends MainMenuActivity
     /**
      * Enables the My Location layer if the fine location permission has been granted.
      */
-    private void enableMyLocation() {
+
+
+/*    private void enableMyLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission to access the location is missing.
@@ -170,7 +169,7 @@ public class MapsActivityRaw extends MainMenuActivity
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
         }
-    }
+    }*/
 
     @Override
     public boolean onMyLocationButtonClick() {
@@ -181,26 +180,26 @@ public class MapsActivityRaw extends MainMenuActivity
     }
 
     @Override
-    public void onMyLocationClick(@NonNull Location location) {
+    public void onMyLocationClick(Location location) {
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
         if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
             return;
         }
 
-        if (PermissionUtils.isPermissionGranted(permissions, grantResults,
-                Manifest.permission.ACCESS_FINE_LOCATION)) {
+        //if (PermissionUtils.isPermissionGranted(permissions, grantResults,
+          //      Manifest.permission.ACCESS_FINE_LOCATION)) {
             // Enable the my location layer if the permission has been granted.
-            enableMyLocation();
-        } else {
+            //enableMyLocation();
+       /// } else {
             // Display the missing permission error dialog when the fragments resume.
-            mPermissionDenied = true;
+          //  mPermissionDenied = true;
         }
-    }
+   // }
 
     @Override
     protected void onResumeFragments() {
@@ -216,8 +215,7 @@ public class MapsActivityRaw extends MainMenuActivity
      * Displays a dialog with error message explaining that the location permission is missing.
      */
     private void showMissingPermissionError() {
-        PermissionUtils.PermissionDeniedDialog
-                .newInstance(true).show(getSupportFragmentManager(), "dialog");
+        //PermissionUtils.PermissionDeniedDialog.newInstance(true).show(getSupportFragmentManager(), "dialog");
     }
 
 }

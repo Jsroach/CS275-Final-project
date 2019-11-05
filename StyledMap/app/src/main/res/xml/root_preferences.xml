@@ -33,47 +33,6 @@
             app:title="@string/crimefilters"
             app:useSimpleSummaryProvider="true" />
 
-        <CheckBoxPreference
-            app:key="filterone"
-            app:title="Select desired crime filters(up to 7):"
-            android:defaultValue="false"
-            android:summary="Assault with deadly weapon(police officer)"/>
-
-        <CheckBoxPreference
-            app:key="filtertwo"
-            android:defaultValue="false"
-            android:summary="Assault with deadly weapon(aggravated assault)"/>
-
-        <CheckBoxPreference
-            app:key="filterthree"
-            android:defaultValue="false"
-            android:summary="Burglary"/>
-
-        <CheckBoxPreference
-            app:key="filterfour"
-            android:defaultValue="false"
-            android:summary="Burglary(stealing from vehicle)"/>
-
-        <CheckBoxPreference
-            app:key="filterfive"
-            android:defaultValue="false"
-            android:summary="Criminal Homicide"/>
-
-        <CheckBoxPreference
-            app:key="filtersix"
-            android:defaultValue="false"
-            android:summary="Kidnapping"/>
-
-        <CheckBoxPreference
-            app:key="filterseven"
-            android:defaultValue="false"
-            android:summary="Rape"/>
-
-        <CheckBoxPreference
-            app:key="filtereight"
-            android:defaultValue="false"
-            android:summary="Robbery"/>
-
         <SwitchPreferenceCompat
             app:key="nightmode"
             app:title="@string/nightmode" />

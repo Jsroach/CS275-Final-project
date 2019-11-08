@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -68,7 +70,7 @@ public class MainMenuActivity extends AppCompatActivity {
             // Delayed display of UI elements
             ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
-                actionBar.show();
+                actionBar.hide();
             }
             mControlsView.setVisibility(View.VISIBLE);
         }
@@ -124,6 +126,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 //toggle();
             }
         });
+
+
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -192,6 +196,12 @@ public class MainMenuActivity extends AppCompatActivity {
     public void toSettings(View view)
     {
         Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void toDatabase(View view)
+    {
+        Intent intent = new Intent(MainMenuActivity.this, CrimeList.class);
         startActivity(intent);
     }
 

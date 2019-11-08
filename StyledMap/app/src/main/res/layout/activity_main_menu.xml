@@ -63,6 +63,7 @@
                 android:id="@+id/crimeListButton"
                 android:layout_width="195dp"
                 android:layout_height="64dp"
+                android:onClick="toDatabase"
                 android:text="@string/crime_list"
                 android:textColor="#F30606"
                 android:textSize="30sp"
@@ -79,6 +80,8 @@
                 android:textSize="30sp"
                 android:typeface="serif"
                 android:layout_margin="10dp"/>
+
+
 
         </LinearLayout>
 

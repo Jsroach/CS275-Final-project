@@ -10,8 +10,8 @@ import android.widget.EditText;
 
 public class NewCrimeActivity extends AppCompatActivity {
 
-    //public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
-    public static final int EXTRA_REPLY = 1;
+   public static final String EXTRA_REPLY = "com.example.android.crimelistsql.REPLY";
+    //public static final int EXTRA_REPLY = 1;
     private EditText mEditCrimeView;
 
     @Override
@@ -19,6 +19,10 @@ public class NewCrimeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_crime);
         mEditCrimeView = findViewById(R.id.edit_crime);
+        mEditCrimeView = findViewById(R.id.edit_date);
+        mEditCrimeView = findViewById(R.id.edit_weapon);
+        mEditCrimeView = findViewById(R.id.edit_latitude);
+        mEditCrimeView = findViewById(R.id.edit_longitude);
 
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +32,7 @@ public class NewCrimeActivity extends AppCompatActivity {
                     setResult(RESULT_CANCELED, replyIntent);
                 } else {
                     String crime = mEditCrimeView.getText().toString();
-                   // replyIntent.putExtra(EXTRA_REPLY, crime);
+                    replyIntent.putExtra(EXTRA_REPLY, crime);
                     setResult(RESULT_OK, replyIntent);
                 }
                 finish();

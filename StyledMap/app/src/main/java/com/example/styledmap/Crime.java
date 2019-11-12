@@ -3,6 +3,7 @@ package com.example.styledmap;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "crime_table")
@@ -12,14 +13,14 @@ public class Crime{
     @ColumnInfo(name = "Crime Id")
     public int mCrimeId;
 
-    public int CrimeId(@NonNull int crimeid) {return this.mCrimeId = crimeid;}
+    public int CrimeId( int crimeid) { return this.mCrimeId = crimeid;}
 
     public int getCrimeId(){return this.mCrimeId;}
 
     @ColumnInfo(name = "Crime Type")
     public String mCrimeType;
 
-    public String CrimeType(@NonNull String crimetype) {return this.mCrimeType = crimetype;}
+    public String CrimeType( @NonNull String crime) { return this.mCrimeType = crime;}
 
     public String getCrimeType(){return this.mCrimeType;}
 
@@ -51,5 +52,14 @@ public class Crime{
     public Float Longitude(@NonNull float longitude) {return this.mLongitude = longitude;}
 
     public float getLongitude(){return this.mLongitude;}
+
+    public Crime(int mCrimeId, String mCrimeType, String mWeapon, float mLatitude, float mLongitude) {
+        this.mCrimeId = mCrimeId;
+        this.mCrimeType = mCrimeType;
+        this.mWeapon = mWeapon;
+        this.mLatitude = mLatitude;
+        this.mLongitude = mLongitude;
+
+    }
 
 }

@@ -11,13 +11,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.CrimeViewHolder> {
-
+/*Edit this code below */
     class CrimeViewHolder extends RecyclerView.ViewHolder {
         private final TextView crimeItemView;
 
         private CrimeViewHolder(View itemView) {
             super(itemView);
-            crimeItemView = itemView.findViewById(R.id.textView);
+            crimeItemView = itemView.findViewById(R.id.crimeView);
         }
     }
 

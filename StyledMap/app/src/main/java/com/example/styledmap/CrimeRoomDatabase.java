@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 
-@Database(entities = {Crime.class}, version = 1)
+@Database(entities = {Crime.class}, version = 1,  exportSchema = false)
  public abstract class CrimeRoomDatabase extends RoomDatabase {
      public abstract CrimeDao crimeDao();
     private static volatile CrimeRoomDatabase INSTANCE;
@@ -47,9 +47,9 @@ import androidx.annotation.NonNull;
 
         @Override
         protected Void doInBackground(final Void... params) {
-            Crime crime = new Crime();
+            Crime crime = new Crime(01,"Robbery","Strong Arm",110, 100 );
             mDao.insert(crime);
-            crime = new Crime();
+            crime = new Crime(02,"Robbery","Strong Arm",110, 100);
             mDao.insert(crime);
             return null;
         }

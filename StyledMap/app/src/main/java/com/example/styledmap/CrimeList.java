@@ -62,8 +62,9 @@ public class CrimeList extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-          // Crime crime = new Crime(data.getIntExtra(NewCrimeActivity.EXTRA_REPLY));
-          //  mCrimeViewModel.insert(crime);
+
+          Crime crime = new Crime(01, data.getStringExtra(NewCrimeActivity.EXTRA_REPLY),"Strong Arm",110,100);
+          mCrimeViewModel.insert(crime);
         } else {
             Toast.makeText(
                     getApplicationContext(),

@@ -66,9 +66,9 @@ import androidx.annotation.NonNull;
             @Override
             public void migrate(@NonNull SupportSQLiteDatabase crimedatabase) {
                 crimedatabase.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `crime_table` USING FTS4("
-                        + "`rowid`,`Crime_Type` ,`Date_Occurred`,`Weapon` , `Latitude` ,`Longitude`  )");
+                        + "`rowid`,`Crime_Type` ,`Date_Occurred`,`Weapon`, `Latitude` ,`Longitude`)");
                 crimedatabase.execSQL("INSERT INTO crime_table (`rowid`, `Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`) "
-                       + "SELECT `rowid`,`Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`FROM crime_table ");
+                       + "SELECT `rowid`,`crime`, `date`, `weapon`,`latitude`,`longitude`FROM crime_table ");
 
             }
         };

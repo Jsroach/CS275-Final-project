@@ -8,7 +8,7 @@
 
     <application
         tools:replace="androidx:appComponentFactory"
-        android:appComponentFactory="whateverString"
+        android:appComponentFactory=".CrimeRoomDatabase"
         android:allowBackup="true"
         android:icon="@mipmap/bodyguardicon"
         android:label="@string/app_name"

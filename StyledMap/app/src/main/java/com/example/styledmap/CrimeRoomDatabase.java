@@ -1,5 +1,7 @@
 package com.example.styledmap;
 
+import androidx.room.TypeConverters;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -8,10 +10,13 @@ import android.content.Context;
 import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 
-@Database(entities = {Crime.class}, version = 1,  exportSchema = false)
+@Database(entities = {CrimeDatabase.class}, version = 2,  exportSchema = false)
+@TypeConverters({Converters.class})
  public abstract class CrimeRoomDatabase extends RoomDatabase {
-     public abstract CrimeDao crimeDao();
+    public abstract CrimeDao crimeDao();
+
     private static volatile CrimeRoomDatabase INSTANCE;
+
     static CrimeRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (CrimeRoomDatabase.class) {
@@ -19,6 +24,7 @@ import androidx.annotation.NonNull;
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             CrimeRoomDatabase.class, "crime_database")
                             .addCallback(sRoomDatabaseCallback)
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }
@@ -33,7 +39,7 @@ import androidx.annotation.NonNull;
             super.onOpen(db);
             // If you want to keep the data through app restarts,
             // comment out the following line.
-            //new PopulateDbAsync(INSTANCE).execute();
+            new PopulateDbAsync(INSTANCE).execute();
         }
     };
 
@@ -47,13 +53,29 @@ import androidx.annotation.NonNull;
 
         @Override
         protected Void doInBackground(final Void... params) {
-            Crime crime = new Crime(01,"Robbery","Strong Arm",110, 100 );
-            mDao.insert(crime);
-            crime = new Crime(02,"Robbery","Strong Arm",110, 100);
-            mDao.insert(crime);
+             CrimeDatabase crime = new CrimeDatabase();
+             mDao.insert(crime);
+            // crime = new Crime(02,"Robbery","Strong Arm",110, 100);
+            // mDao.insert(crime);
             return null;
         }
     }
+        //Migration has error with insert where it can't find column crime type in crime table
+        private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+
+            @Override
+            public void migrate(@NonNull SupportSQLiteDatabase crimedatabase) {
+                crimedatabase.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `crime_table` USING FTS4("
+                        + "`rowid`,`Crime_Type` ,`Date_Occurred`,`Weapon` , `Latitude` ,`Longitude`  )");
+                crimedatabase.execSQL("INSERT INTO crime_table (`rowid`, `Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`) "
+                       + "SELECT `rowid`,`Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`FROM crime_table ");
+
+            }
+        };
+    }
+//,INTEGER ,TEXT  ,DATE ,TEXT ,FLOAT FLOAT
+
+
     /* public class FeedReaderDbHelper extends SQLiteOpenHelper {
          // If you change the database schema, you must increment the database version.
          public static final int DATABASE_VERSION = 1;
@@ -128,7 +150,7 @@ import androidx.annotation.NonNull;
      // Insert the new row, returning the primary key value of the new row
   //   long newRowId = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values); */
 
-}
+
 
 /*
     //SQLiteDatabase db = dbHelper.getReadableDatabase();

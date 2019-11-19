@@ -5,7 +5,7 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.example.styledmap"
-        minSdkVersion 16
+        minSdkVersion 26
         targetSdkVersion 26
         multiDexEnabled true
         versionCode 1
@@ -29,6 +29,8 @@ dependencies {
     def coreTestingVersion = '2.1.0'
     def materialVersion = '1.0.0'
 
+
+    implementation 'com.opencsv:opencsv:5.0'
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"

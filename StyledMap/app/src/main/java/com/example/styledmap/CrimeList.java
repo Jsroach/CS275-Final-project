@@ -40,9 +40,9 @@ public class CrimeList extends AppCompatActivity {
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        mCrimeViewModel.getAllCrimes().observe(this, new Observer<List<Crime>>() {
+        mCrimeViewModel.getAllCrimes().observe(this, new Observer<List<CrimeDatabase>>() {
             @Override
-            public void onChanged(@Nullable final List<Crime> crimes) {
+            public void onChanged(@Nullable final List<CrimeDatabase> crimes) {
                 // Update the cached copy of the words in the adapter.
                adapter.setCrimes(crimes);
             }
@@ -63,8 +63,8 @@ public class CrimeList extends AppCompatActivity {
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
-          Crime crime = new Crime(01, data.getStringExtra(NewCrimeActivity.EXTRA_REPLY),"Strong Arm",110,100);
-          mCrimeViewModel.insert(crime);
+          //Crime crime = new Crime(01, data.getStringExtra(NewCrimeActivity.EXTRA_REPLY),"Strong Arm",110,100);
+         // mCrimeViewModel.insert(crime);
         } else {
             Toast.makeText(
                     getApplicationContext(),

@@ -11,11 +11,11 @@ import java.util.List;
 @Dao
 public interface CrimeDao{
 
-    @Query("SELECT * from crime_table ORDER BY `Crime Id` ASC")
-    LiveData<List<Crime>> getAlphabetizedCrimes();
+    @Query("SELECT rowid,Crime_Type,Date_Occurred,Latitude,Longitude,Weapon from crime_table ORDER BY `Crime_Type` ASC")
+    LiveData<List<CrimeDatabase>> getAlphabetizedCrimes();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert( Crime crime);
+    void insert( CrimeDatabase crime);
 
    @Query("DELETE FROM crime_table")
     void deleteAll();

@@ -7,7 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
+import com.opencsv.bean.CsvNumber;
+import com.opencsv.bean.CsvToBeanBuilder;
+
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.CrimeViewHolder> {
@@ -22,8 +28,7 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
     }
 
     private final LayoutInflater mInflater;
-    private List<Crime> mCrimeId; // Cached copy of words
-
+    private List<CrimeDatabase> rowid; // Cached copy of words
     CrimeListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
@@ -34,17 +39,17 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
 
     @Override
     public void onBindViewHolder(CrimeViewHolder holder, int position) {
-        if (mCrimeId != null) {
-            Crime current = mCrimeId.get(position);
-            holder.crimeItemView.setText(current.getCrimeId());
+        if (rowid != null) {
+            CrimeDatabase current = rowid.get(position);
+            holder.crimeItemView.setText(current.getCrimeType()); // error here
         } else {
             // Covers the case of data not being ready yet.
             holder.crimeItemView.setText("No Crime");
         }
     }
 
-    void setCrimes(List<Crime> crimes){
-        mCrimeId = crimes;
+    void setCrimes(List<CrimeDatabase> crimes){
+        rowid = crimes;
         notifyDataSetChanged();
     }
 
@@ -52,8 +57,8 @@ public class CrimeListAdapter extends RecyclerView.Adapter<CrimeListAdapter.Crim
     // mWords has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mCrimeId != null)
-            return mCrimeId.size();
+        if (rowid != null)
+            return rowid.size();
         else return 0;
     }
 }

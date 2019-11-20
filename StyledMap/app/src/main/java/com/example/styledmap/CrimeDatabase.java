@@ -39,14 +39,14 @@ public class CrimeDatabase {
     @CsvBindByName(column = "rowid")
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "rowid")
-    public int rowid;
+    public int id;
 
-    public int rowid(int rowid) {
-        return this.rowid = rowid;
+    public int id(int id) {
+        return this.id = id;
     }
 
-    public int getRowId() {
-        return this.rowid;
+    public int getId() {
+        return this.id;
     }
 
     @ColumnInfo(name = "Crime_Type")

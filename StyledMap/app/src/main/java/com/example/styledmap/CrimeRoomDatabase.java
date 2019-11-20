@@ -53,10 +53,10 @@ import androidx.annotation.NonNull;
 
         @Override
         protected Void doInBackground(final Void... params) {
-             CrimeDatabase crime = new CrimeDatabase();
-             mDao.insert(crime);
-            // crime = new Crime(02,"Robbery","Strong Arm",110, 100);
-            // mDao.insert(crime);
+             CrimeDatabase crimeOne = new CrimeDatabase();
+             mDao.insert(crimeOne);
+            CrimeDatabase crimeTwo = new CrimeDatabase();
+             mDao.insert(crimeTwo);
             return null;
         }
     }
@@ -68,7 +68,7 @@ import androidx.annotation.NonNull;
                 crimedatabase.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `crime_table` USING FTS4("
                         + "`rowid`,`Crime_Type` ,`Date_Occurred`,`Weapon`, `Latitude` ,`Longitude`)");
                 crimedatabase.execSQL("INSERT INTO crime_table (`rowid`, `Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`) "
-                       + "SELECT `rowid`,`crime`, `date`, `weapon`,`latitude`,`longitude`FROM crime_table ");
+                       + "SELECT `id`,`crime`, `date`, `weapon`,`latitude`,`longitude`FROM crime_table ");
 
             }
         };

@@ -63,8 +63,8 @@ public class CrimeList extends AppCompatActivity {
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
-          //Crime crime = new Crime(01, data.getStringExtra(NewCrimeActivity.EXTRA_REPLY),"Strong Arm",110,100);
-         // mCrimeViewModel.insert(crime);
+          CrimeDatabase crime = new CrimeDatabase();
+          mCrimeViewModel.insert(crime);
         } else {
             Toast.makeText(
                     getApplicationContext(),

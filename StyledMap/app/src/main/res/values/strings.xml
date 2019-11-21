@@ -35,4 +35,11 @@
     <string name="hint_word">Word…</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="loading_crimes">Loading crimes...</string>
+    <string name="crime_type">Loading crimes...</string>
+    <string name="search_crimes_hint">Search Crimes...</string>
+    <string name="cd_crimes_list">Crimes list</string>
+    <string name="cd_crime_name">Type of the crime</string>
+    <string name="cd_search_crimes">Search crimes</string>
+    <string name="crime_csv">last6monthstrimmedbycrimenweapon.csv</string>
 </resources>

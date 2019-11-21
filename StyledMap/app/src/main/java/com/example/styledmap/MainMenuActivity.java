@@ -201,7 +201,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void toDatabase(View view)
     {
-        Intent intent = new Intent(MainMenuActivity.this, CrimeList.class);
+        Intent intent = new Intent(MainMenuActivity.this, CrimeListActivity.class);
         startActivity(intent);
     }
 

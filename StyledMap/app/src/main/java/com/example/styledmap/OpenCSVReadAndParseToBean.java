@@ -12,19 +12,19 @@ import java.util.Iterator;
 public class OpenCSVReadAndParseToBean {
         private static final String SAMPLE_CSV_FILE_PATH = "C:/Users/AllBen/Desktop/CS275-Final-project/StyledMap/app/src/main/res/raw/las6monthstrimmedbycrimenweapon.csv";
 
-        public static void main(String[] args) throws IOException {
+        public static void main() throws IOException {
             try (
                     Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
             ) {
-                CsvToBean<CrimeDatabase> csvToBean = new CsvToBeanBuilder(reader)
-                        .withType(CrimeDatabase.class)
+                CsvToBean<CrimeEntity> csvToBean = new CsvToBeanBuilder(reader)
+                        .withType(CrimeEntity.class)
                         .withIgnoreLeadingWhiteSpace(true)
                         .build();
 
-                Iterator<CrimeDatabase> csvUserIterator = csvToBean.iterator();
+                Iterator<CrimeEntity> csvUserIterator = csvToBean.iterator();
 
                 while (csvUserIterator.hasNext()) {
-                    CrimeDatabase crime = csvUserIterator.next();
+                    CrimeEntity crime = csvUserIterator.next();
                     crime.mDate = crime.getDate();
                     crime.mCrimeType = crime.getCrimeType();
                     crime.mWeapon = crime.getWeapon();
@@ -41,8 +41,8 @@ public class OpenCSVReadAndParseToBean {
         }
 
     /*public List makeList (Context context) {
-        List<Crime> beans = new CsvToBeanBuilder(FileReader(getCSV(Context context)))
-                .withType(Crime.class).build().parse();
+        List<CrimeEntity> beans = new CsvToBeanBuilder(FileReader(getCSV(Context context)))
+                .withType(CrimeEntity.class).build().parse();
         return beans;
     }*/
 

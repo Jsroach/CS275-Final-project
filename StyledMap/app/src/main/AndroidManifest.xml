@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
+        android:name=".BasicApp"
         tools:replace="androidx:appComponentFactory"
         android:appComponentFactory=".CrimeRoomDatabase"
         android:allowBackup="true"
@@ -51,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CrimeList"
+            android:name=".CrimeListActivity"
             android:label="@string/title_activity_maps"
             android:usesCleartextTraffic="true">
             <intent-filter>
@@ -60,7 +61,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewCrimeActivity"></activity>
     </application>
 
 </manifest>

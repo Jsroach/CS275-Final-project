@@ -1,5 +1,7 @@
 package com.example.styledmap;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.TypeConverters;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -7,72 +9,114 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
-import android.os.AsyncTask;
+import com.example.styledmap.AppExecutors;
+import com.example.styledmap.CrimeEntity;
+import com.opencsv.bean.CsvToBeanBuilder;
+import java.io.FileReader;
 import androidx.annotation.NonNull;
 
-@Database(entities = {CrimeDatabase.class}, version = 2,  exportSchema = false)
+import java.io.IOException;
+import java.util.List;
+
+@Database(entities = {CrimeEntity.class}, version = 2,  exportSchema = false)
 @TypeConverters({Converters.class})
  public abstract class CrimeRoomDatabase extends RoomDatabase {
+    private static CrimeRoomDatabase sInstance;
+
     public abstract CrimeDao crimeDao();
+
+    public static final String DATABASE_NAME = "crime-database";
+    private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
     private static volatile CrimeRoomDatabase INSTANCE;
 
-    static CrimeRoomDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
+    public static CrimeRoomDatabase getInstance(final Context context, final AppExecutors executors) {
+        if (sInstance == null) {
             synchronized (CrimeRoomDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            CrimeRoomDatabase.class, "crime_database")
-                            .addCallback(sRoomDatabaseCallback)
-                            .addMigrations(MIGRATION_1_2)
-                            .build();
+                if (sInstance == null) {
+                    sInstance = buildDatabase(context.getApplicationContext(), executors);
+                    sInstance.updateDatabaseCreated(context.getApplicationContext());
                 }
             }
         }
-        return INSTANCE;
+        return sInstance;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    /**
+     * Build the database. {@link Builder#build()} only sets up the database configuration and
+     * creates a new instance of the database.
+     * The SQLite database is only created when it's accessed for the first time.
+     */
+    private static CrimeRoomDatabase buildDatabase(final Context appContext,
+                                                   final AppExecutors executors) {
+        return Room.databaseBuilder(appContext, CrimeRoomDatabase.class, DATABASE_NAME)
+                .addCallback(new Callback() {
+                    @Override
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                        super.onCreate(db);
+                        executors.diskIO().execute(() -> {
+                            // Add a delay to simulate a long-running operation
+                            addDelay();
+                            // Generate the data for pre-population
+                            CrimeRoomDatabase database = CrimeRoomDatabase.getInstance(appContext, executors);
+                            List<CrimeEntity> crimes = DataGenerator.generateCrimes();
+                            //List<CommentEntity> comments =
+                            //DataGenerator.generateCommentsForProducts(products);
+
+                            insertData(database, crimes);
+                            // notify that the database was created and it's ready to be used
+                            database.setDatabaseCreated();
+                        });
+                    }
+                })
+                .addMigrations(MIGRATION_1_2)
+                .build();
+    }
+
+    /**
+     * Check whether the database already exists and expose it via {@link #getDatabaseCreated()}
+     */
+    private void updateDatabaseCreated(final Context context) {
+        if (context.getDatabasePath(DATABASE_NAME).exists()) {
+            setDatabaseCreated();
+        }
+    }
+
+    private void setDatabaseCreated() {
+        mIsDatabaseCreated.postValue(true);
+    }
+
+    private static void insertData(final CrimeRoomDatabase database, final List<CrimeEntity> crimes) {
+        // final List<CommentEntity> comments) {
+        database.runInTransaction(() -> {
+            database.crimeDao().insertAll(crimes);
+        });
+    }
+
+    private static void addDelay() {
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ignored) {
+        }
+    }
+
+    public LiveData<Boolean> getDatabaseCreated() {
+        return mIsDatabaseCreated;
+    }
+
+    //Migration has error with insert where it can't find column crime type in crime table
+    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
 
         @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
-            // If you want to keep the data through app restarts,
-            // comment out the following line.
-            new PopulateDbAsync(INSTANCE).execute();
+        public void migrate(@NonNull SupportSQLiteDatabase crimedatabase) {
+            crimedatabase.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `crime_table` USING FTS4("
+                    + "`rowid`,`Crime_Type` ,`Date_Occurred`,`Weapon`, `Latitude` ,`Longitude`)");
+            crimedatabase.execSQL("INSERT INTO crime_table (`rowid`, `Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`) "
+                    + "SELECT `id`,`crime`, `date`, `weapon`,`latitude`,`longitude`FROM crime_table ");
+
         }
     };
-
-    private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
-
-        private final CrimeDao mDao;
-
-        PopulateDbAsync(CrimeRoomDatabase db) {
-            mDao = db.crimeDao();
-        }
-
-        @Override
-        protected Void doInBackground(final Void... params) {
-             CrimeDatabase crimeOne = new CrimeDatabase();
-             mDao.insert(crimeOne);
-            CrimeDatabase crimeTwo = new CrimeDatabase();
-             mDao.insert(crimeTwo);
-            return null;
-        }
-    }
-        //Migration has error with insert where it can't find column crime type in crime table
-        private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-
-            @Override
-            public void migrate(@NonNull SupportSQLiteDatabase crimedatabase) {
-                crimedatabase.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `crime_table` USING FTS4("
-                        + "`rowid`,`Crime_Type` ,`Date_Occurred`,`Weapon`, `Latitude` ,`Longitude`)");
-                crimedatabase.execSQL("INSERT INTO crime_table (`rowid`, `Crime_Type`, `Date_Occurred`, `Weapon`,`Latitude`,`Longitude`) "
-                       + "SELECT `id`,`crime`, `date`, `weapon`,`latitude`,`longitude`FROM crime_table ");
-
-            }
-        };
-    }
+}
 //,INTEGER ,TEXT  ,DATE ,TEXT ,FLOAT FLOAT
 
 

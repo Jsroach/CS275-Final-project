@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Fts4;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
@@ -27,7 +28,7 @@ import java.util.List;
 
 @Fts4
 @Entity(tableName = "crime_table")
-public class CrimeDatabase {
+public class CrimeEntity implements Crime{
  /*   private Context mContext;
     // String csvFile = "C:\\Users\\AllBen\\Desktop\\CS275-Final-project\\StyledMap\\app\\src\\main\\res\\raw\\last6monthstrimmedbycrimenweapon.csv";
 
@@ -36,77 +37,92 @@ public class CrimeDatabase {
         InputStream csv = context.getResources().openRawResource(R.raw.last6monthstrimmedbycrimenweapon);
         return csv;
     }*/
-    @CsvBindByName(column = "rowid")
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "rowid")
     public int id;
 
-    public int id(int id) {
+    public int setId(int id) {
         return this.id = id;
     }
-
+    @Override
     public int getId() {
         return this.id;
     }
 
     @ColumnInfo(name = "Crime_Type")
-    @CsvBindByName(column = "Crime_Type")
     public String mCrimeType;
 
-    public String CrimeType(@NonNull String crime) {
-        return this.mCrimeType = crime;
+    public String setCrimeType(@NonNull String crimeType) {
+        return this.mCrimeType = crimeType;
     }
-
+    @Override
     public String getCrimeType() {
         return this.mCrimeType;
     }
     @ColumnInfo(name = "Date_Occurred")
-    @CsvBindByName(column = "Date_Occurred")
-    @CsvDate("dd/mm/yyyy")
     public Date mDate;
 
-    public Date Date(@NonNull Date date) {
+    public Date setDate(@NonNull Date date) {
         return this.mDate = date;
     }
-
+    @Override
     public Date getDate() {
         return this.mDate;
     }
 
     @ColumnInfo(name = "Weapon")
-    @CsvBindByName(column = "Weapon")
     public String mWeapon;
 
-    public String Weapon(@NonNull String weapon) {
+    public String setWeapon(@NonNull String weapon) {
         return this.mWeapon = weapon;
     }
-
+    @Override
     public String getWeapon() {
         return this.mWeapon;
     }
 
     @ColumnInfo(name = "Latitude")
-    @CsvBindByName(column = "Latitude")
-    public float mLatitude;
+    public double mLatitude;
 
-    public Float Latitude(@NonNull float latitude) {
+    public double setLatitude(@NonNull double latitude) {
         return this.mLatitude = latitude;
     }
-
-    public float getLatitude() {
+    @Override
+    public double getLatitude() {
         return this.mLatitude;
     }
 
     @ColumnInfo(name = "Longitude")
-    @CsvBindByName(column = "Longitude")
-    public float mLongitude;
+    public double mLongitude;
 
-    public Float Longitude(@NonNull float longitude) {
+    public double setLongitude(@NonNull double longitude) {
         return this.mLongitude = longitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return this.mLongitude;
+    }
+
+    public CrimeEntity(){}
+
+    @Ignore
+    public CrimeEntity(int id, String crime, Date date, String weapon, double latitude, double longitude){
+        this.id=id;
+        this.mCrimeType= crime;
+        this.mDate= date;
+        this.mWeapon = weapon;
+        this.mLatitude= latitude;
+        this.mLongitude= longitude;
+    }
+
+    public CrimeEntity(Crime crime){
+        this.id=crime.getId();
+        this.mCrimeType=crime.getCrimeType();
+        this.mDate=crime.getDate();
+        this.mWeapon=crime.getWeapon();
+        this.mLatitude=crime.getLatitude();
+        this.mLongitude=crime.getLongitude();
     }
 }
 

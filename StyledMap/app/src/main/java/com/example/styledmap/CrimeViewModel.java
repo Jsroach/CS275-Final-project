@@ -1,28 +1,70 @@
 package com.example.styledmap;
 
 import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import com.opencsv.CSVReader;
-import java.io.IOException;
-import java.io.FileReader;
+import androidx.databinding.ObservableField;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
+import java.util.IdentityHashMap;
 import java.util.List;
 
 public class CrimeViewModel extends AndroidViewModel {
-   private CrimeRepository mRepository;
+    private final LiveData<CrimeEntity> mObservableCrime;
 
-    private LiveData<List<CrimeDatabase>> mAllCrimes;
+    public ObservableField<CrimeEntity> crime = new ObservableField<>();
 
-    public CrimeViewModel(Application application) {
+    private final int mCrimeId;
+
+
+    public CrimeViewModel(@NonNull Application application, CrimeRepository repository,
+                          final int crimeId) {
         super(application);
-        mRepository = new CrimeRepository(application);
-        mAllCrimes = mRepository.getAllCrimes();
+        mCrimeId = crimeId;
+
+        mObservableCrime = repository.loadCrime(mCrimeId);
     }
 
-    LiveData<List<CrimeDatabase>> getAllCrimes() {
-        return mAllCrimes;
-    }
-    public void insert(CrimeDatabase crime) { mRepository.insert(crime);}
+    /**
+     * Expose the LiveData Comments query so the UI can observe it.
+     */
 
+    public LiveData<CrimeEntity> getObservableCrime() {
+        return mObservableCrime;
     }
+
+    public void setCrime(CrimeEntity crime) {
+        this.crime.set(crime);
+    }
+    /**
+     * A creator is used to inject the product ID into the ViewModel
+     * <p>
+     * This creator is to showcase how to inject dependencies into ViewModels. It's not
+     * actually necessary in this case, as the product ID can be passed in a public method.
+     */
+    public static class Factory extends ViewModelProvider.NewInstanceFactory {
+
+        @NonNull
+        private final Application mApplication;
+
+        private final int mCrimeId;
+
+        private final CrimeRepository mRepository;
+
+        public Factory(@NonNull Application application, int crimeId) {
+            mApplication = application;
+            mCrimeId = crimeId;
+            mRepository = ((BasicApp) application).getRepository();
+        }
+
+        @Override
+        public <T extends ViewModel> T create(Class<T> modelClass) {
+            //noinspection unchecked
+            return (T) new CrimeViewModel(mApplication, mRepository, mCrimeId);
+        }
+    }
+}
+

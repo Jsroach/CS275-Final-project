@@ -7,4 +7,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="small_padding">6dp</dimen>
     <dimen name="big_padding">16dp</dimen>
+    <dimen name="crime_item_min_height">64dp</dimen>
+    <dimen name="item_horizontal_margin">8dp</dimen>
+    <dimen name="comment_horizontal_margin">16dp</dimen>
+    <dimen name="comment_padding">8dp</dimen>
+    <dimen name="comment_minHeight">64dp</dimen>
 </resources>

@@ -18,7 +18,7 @@ public class DataGenerator {
 
     public static List<CrimeEntity> generateCrimes() {
         List<CrimeEntity> crimes = new ArrayList<>(TYPE.length);
-        Random rnd = new Random();
+        //Random rnd = new Random();
         for (int i = 0; i < TYPE.length; i++) {
                 CrimeEntity crime = new CrimeEntity();
                 crime.setCrimeType(TYPE[i]);

@@ -1,6 +1,7 @@
 package com.example.styledmap;
 
 import android.app.Application;
+import com.example.styledmap.CrimeRoomDatabase;
 
 public class BasicApp extends Application {
 

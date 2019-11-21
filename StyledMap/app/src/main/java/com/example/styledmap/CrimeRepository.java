@@ -3,6 +3,8 @@ package com.example.styledmap;
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import com.example.styledmap.CrimeEntity;
+import com.example.styledmap.CrimeRoomDatabase;
 
 import java.util.List;
 

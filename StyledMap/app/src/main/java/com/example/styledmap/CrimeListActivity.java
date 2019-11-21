@@ -42,7 +42,7 @@ public class CrimeListActivity extends AppCompatActivity {
         } catch (Exception ex) {
             Helpers.err(ex);
         }
-        return BeanExamples.beanBuilderExample(path, CrimeEntity.class).toString();
+        return BeanExamples.beanBuilderExample(path, NamedColumnBean.class).toString();
     }
 
     public static void main(String[] args) {

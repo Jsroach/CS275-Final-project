@@ -1,9 +1,13 @@
 package com.example.styledmap;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -17,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.concurrent.Executor;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -271,12 +277,44 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private void handleLocationUpdates() {
         //foreground and background
-        Toast.makeText(getApplicationContext(),"Start Foreground and Background Location Updates",Toast.LENGTH_SHORT).show();
+        if(checkSafe()) {
+            Toast.makeText(getApplicationContext(), "Start Foreground and Background Location Updates", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void handleForegroundLocationUpdates() {
         //handleForeground Location Updates
-        Toast.makeText(getApplicationContext(),"Start foreground location updates",Toast.LENGTH_SHORT).show();
+        if(checkSafe()) {
+            Toast.makeText(getApplicationContext(), "Start foreground location updates", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    boolean checkSafe() {
+        boolean granted = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+
+        if(!granted) {
+            return false;
+        }
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if(locationManager == null) {
+            Toast.makeText(getApplicationContext(),"Fail to get location manager.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        String bestProvider = locationManager.getBestProvider(criteria, true);
+        if(bestProvider == null) {
+            Toast.makeText(getApplicationContext(),"Fail to get location provider.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        locationManager.requestLocationUpdates(bestProvider, 0, 0, new DangerousLocationListener());
+
+        return true;
     }
 }
 

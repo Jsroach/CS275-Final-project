@@ -9,6 +9,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
+import android.util.Log;
+
 import com.example.styledmap.AppExecutors;
 import com.example.styledmap.CrimeEntity;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -88,6 +90,8 @@ import java.util.List;
 
     private static void insertData(final CrimeRoomDatabase database, final List<CrimeEntity> crimes) {
         // final List<CommentEntity> comments) {
+        Log.e("CCC","======33333===="+database);
+        Log.e("DDD","======44444===="+crimes);
         database.runInTransaction(() -> {
             database.crimeDao().insertAll(crimes);
         });

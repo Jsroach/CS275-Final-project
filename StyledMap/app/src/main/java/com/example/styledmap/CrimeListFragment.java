@@ -1,6 +1,7 @@
 package com.example.styledmap;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,6 +49,7 @@ public class CrimeListFragment extends Fragment {
         mBinding.crimesSearchBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("BBB","======222222====");
                 Editable query = mBinding.crimesSearchBox.getText();
                 if (query == null || query.toString().isEmpty()) { subscribeUi(viewModel.getCrimes());
                 } else {

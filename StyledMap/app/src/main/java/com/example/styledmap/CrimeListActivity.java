@@ -2,6 +2,7 @@ package com.example.styledmap;
 
 import android.os.Bundle;
 import android.provider.SyncStateContract;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,7 @@ public class CrimeListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crime_list_activity);
-
+        Log.e("AAA","======111111====");
         // Add product list fragment if this is first creation
         if (savedInstanceState == null) {
             CrimeListFragment fragment = new CrimeListFragment();

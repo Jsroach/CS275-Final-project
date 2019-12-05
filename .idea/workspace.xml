@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a07d786-3cd3-400d-b23e-320f0cde6bde" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4a07d786-3cd3-400d-b23e-320f0cde6bde" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +34,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -43,24 +42,18 @@
               <item name="CS275-Final-project" type="1abcf292:AndroidViewProjectNode" />
               <item name="CS275-Final-project" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CS275-Final-project" type="1abcf292:AndroidViewProjectNode" />
-              <item name="CS275-Final-project" type="462c0819:PsiDirectoryNode" />
-              <item name="crimedatabase" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Crime" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RunDashboard">
@@ -107,14 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1575505556696</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Database Version 2">
+      <created>1575525573803</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575525573803</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.35870445" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3651822" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -136,7 +136,8 @@
     <MESSAGE value="Added two api tutorials&#10;Styled Map &#10;Current Place Details on map" />
     <MESSAGE value="Added Database Version 1" />
     <MESSAGE value="Fixed Database Version 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Database Version 1" />
+    <MESSAGE value="Database Version 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Database Version 2" />
   </component>
   <component name="masterDetails">
     <states>

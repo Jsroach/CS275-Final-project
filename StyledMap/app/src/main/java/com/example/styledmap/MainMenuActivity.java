@@ -205,11 +205,11 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toDatabase(View view)
+  /*  public void toDatabase(View view)
     {
         Intent intent = new Intent(MainMenuActivity.this, CrimeListActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     private void requestLocationPermission() {
 
@@ -277,20 +277,16 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private void handleLocationUpdates() {
         //foreground and background
-        if(checkSafe()) {
-            Toast.makeText(getApplicationContext(), "Start Foreground and Background Location Updates", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(getApplicationContext(),"Start Foreground and Background Location Updates",Toast.LENGTH_SHORT).show();
     }
 
     private void handleForegroundLocationUpdates() {
         //handleForeground Location Updates
-        if(checkSafe()) {
-            Toast.makeText(getApplicationContext(), "Start foreground location updates", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(getApplicationContext(),"Start foreground location updates",Toast.LENGTH_SHORT).show();
     }
 
 
-    boolean checkSafe() {
+    /*boolean checkSafe() {
         boolean granted = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
@@ -315,6 +311,6 @@ public class MainMenuActivity extends AppCompatActivity {
         locationManager.requestLocationUpdates(bestProvider, 0, 0, new DangerousLocationListener());
 
         return true;
-    }
+    }*/
 }
 

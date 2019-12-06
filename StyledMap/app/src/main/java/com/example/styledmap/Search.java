@@ -21,13 +21,16 @@ public class Search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         searchView = findViewById(R.id.searchView);
         temp=new ArrayList<Crime>();
+        final    DatabaseHelper dh=new DatabaseHelper(getApplicationContext());
+
+
         recyclerView   =  findViewById(R.id.recyclerView);
         // set a LinearLayoutManager with default vertical orientation
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         //  call the constructor of CustomAdapter to send the reference and data to Adapter
 
-        final CustomAdapter customAdapter = new CustomAdapter(Search.this,crs);
+        final CustomAdapter customAdapter = new CustomAdapter(Search.this,crs,dh);
         recyclerView.setAdapter(customAdapter);
 
         // set the Adapter to RecyclerView
@@ -44,24 +47,16 @@ public class Search extends AppCompatActivity {
                         temp.add(c);
                     }
                 }
-                final CustomAdapter ca = new CustomAdapter(Search.this,temp);
+                final CustomAdapter ca = new CustomAdapter(Search.this,temp,dh);
                 recyclerView.setAdapter(ca);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-                for(Crime c:crs)
-                {
-                    if(c.getCrime_type().contains(query))
-                    {
-                        temp.add(c);
-                    }
-                }
-                final CustomAdapter ca = new CustomAdapter(Search.this,temp);
-                recyclerView.setAdapter(ca);
-                return false;
 
+
+                return false;
             }
         });
 

@@ -35,6 +35,7 @@ public class MapsActivityRaw extends MainMenuActivity
         OnMapReadyCallback{
 
     private static final String TAG = MapsActivityRaw.class.getSimpleName();
+    //Crime c;
 
     /**
      * Request code for location permission request.

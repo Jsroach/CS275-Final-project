@@ -1,5 +1,7 @@
 package com.example.styledmap;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +22,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     List<Crime> crimes;
     Context context;
-
-    public CustomAdapter(Context context, List<Crime> crimes) {
+    DatabaseHelper dh;
+    public CustomAdapter(Context context, List<Crime> crimes,DatabaseHelper dh) {
         this.context = context;
         this.crimes = crimes;
-
+        this.dh=dh;
     }
 
 
@@ -66,6 +72,30 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public boolean onLongClick(View v) {
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                builder
+
+                        .setTitle("Delete Record")
+
+                        .setPositiveButton("Delete",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+                                dh.deleteRow(crimes.get(position).getId());
+                                crimes.remove(position);
+                                context.startActivity(new Intent(context,Search.class));
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
 
 
 

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a07d786-3cd3-400d-b23e-320f0cde6bde" name="Default Changelist" comment="" />
+    <list default="true" id="4a07d786-3cd3-400d-b23e-320f0cde6bde" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StyledMap/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/StyledMap/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StyledMap/app/src/main/java/com/example/styledmap/MapsActivityRaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/StyledMap/app/src/main/java/com/example/styledmap/MapsActivityRaw.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +28,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="948" />
+    <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="984" />
     <option name="height" value="1104" />
@@ -34,7 +38,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -48,12 +51,13 @@
       </pane>
       <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Crime" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CrimeVFOUR/Crime" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RunDashboard">
@@ -107,14 +111,21 @@
       <option name="project" value="LOCAL" />
       <updated>1575525573803</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Branch trimmed to just app">
+      <created>1575535115618</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575535115618</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3651822" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37813765" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -137,7 +148,8 @@
     <MESSAGE value="Added Database Version 1" />
     <MESSAGE value="Fixed Database Version 1" />
     <MESSAGE value="Database Version 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database Version 2" />
+    <MESSAGE value="Branch trimmed to just app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Branch trimmed to just app" />
   </component>
   <component name="masterDetails">
     <states>

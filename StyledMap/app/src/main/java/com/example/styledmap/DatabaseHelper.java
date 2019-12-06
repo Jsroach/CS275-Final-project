@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cr = db.rawQuery("select * from " + crime_table, null);
+        Cursor cr = db.rawQuery("select * from " + crime_table+" order by crime_date asc", null);
 
         if (cr.moveToFirst()) {
             do {
@@ -104,7 +104,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  crs;
     }
 
-
+    public void deleteRow(String i)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.execSQL("delete from crime_table where id='"+i+"'");
+    }
     public Cursor getAllCrimeData() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor cr = sqLiteDatabase.rawQuery("select * from " + crime_table, null);
